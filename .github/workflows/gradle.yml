@@ -28,10 +28,6 @@ jobs:
         run: |
           git fetch --unshallow --tags
           yarn install --immutable
-      - name: Download MC assets
-        run: ./gradlew downloadAssets || ./gradlew downloadAssets || (sleep 30s && ./gradlew downloadAssets)
-      - name: Run DataGen
-        run: ./gradlew runData
       - name: Build with Gradle
         run: ./gradlew build
       - name: Create Release
