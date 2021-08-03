@@ -19,7 +19,7 @@
     ["upload-assets", ["./build/libs/*.jar"]]
   ],
   "owner": "sekwah41",
-  "repo": "Naruto-Mod",
+  "repo": "SekCDevTools",
   "name": "Sekwah",
   "email": "contact@sekwah.com",
   "onlyPublishWithReleaseLabel": true,
