@@ -22,7 +22,6 @@ buildscript {
     }
 }
 plugins {
-    id "com.matthewprenger.cursegradle" version "1.4.0"
     id 'net.researchgate.release' version '2.8.1'
 }
 
@@ -276,29 +275,6 @@ task discordupload {
     }
 }
 
-tasks.curseforge.enabled = System.getenv("CURSE_API") != null
-
-curseforge {
-    if (System.getenv("CURSE_API") == null) {
-        return
-    }
-    apiKey = System.getenv("CURSE_API")
-    project {
-        id = project.curse_project_id
-        // TODO add code to reference this but also cut the latest change logs in for the files
-        changelog = "${project.github}/blob/${branch}/CHANGELOG.md"
-        changelogType = 'markdown'
-        releaseType = 'release'
-        addGameVersion '1.17.1'
-
-        mainArtifact(jar){
-
-        }
-        addArtifact srcJar
-        addArtifact deobfJar
-    }
-}
-
 // https://github.com/researchgate/gradle-release
 // Only other plugin I can find using auto & gradle https://github.com/intuit/hooks
 release {
@@ -333,7 +309,3 @@ compileJava.dependsOn 'cleanbuildfolder'
 // Publish rules
 // Current behavior seems to be canary or release. Though pre-releases may break this pattern.
 publish.dependsOn 'build'
-publish.finalizedBy 'discordupload'
-if (!isCanary) {
-    publish.finalizedBy 'curseforge'
-}
