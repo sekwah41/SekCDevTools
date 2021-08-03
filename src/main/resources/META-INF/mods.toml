@@ -8,8 +8,8 @@ version="${file.jarVersion}"
 displayName="Sekwah Core Dev Tools"
 authors="Sekwah41"
 description='''
-    Just a couple of edits to make my life a bit easier or fun while doing dev stuff.
-    '''
+Just a couple of edits to make my life a bit easier or fun while doing dev stuff.
+'''
 
 [[dependencies.sekcdevtools]]
 modId="forge"
