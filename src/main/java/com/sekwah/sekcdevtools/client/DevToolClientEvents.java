@@ -6,7 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.world.level.storage.LevelStorageSource;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.client.event.ScreenOpenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -16,8 +16,8 @@ public class DevToolClientEvents {
     public static boolean firstLoad = true;
 
     @SubscribeEvent
-    public static void menuChange(GuiScreenEvent.InitGuiEvent event) {
-        if(firstLoad && event.getGui() instanceof TitleScreen && DevConfig.loadWorld != null && DevConfig.loadWorld.length() > 0) {
+    public static void menuChange(ScreenOpenEvent event) {
+        if(firstLoad && event.getScreen() instanceof TitleScreen && DevConfig.loadWorld != null && DevConfig.loadWorld.length() > 0) {
             firstLoad = false;
             Minecraft mc = Minecraft.getInstance();
             LevelStorageSource levelstoragesource = Minecraft.getInstance().getLevelSource();
