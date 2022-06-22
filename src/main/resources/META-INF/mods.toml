@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[37,)"
+loaderVersion="[41,)"
 issueTrackerURL="https://github.com/sekwah41/SekCDevTools/issues"
 license="All rights reserved"
 [[mods]]
@@ -12,16 +12,16 @@ Just a couple of edits to make my life a bit easier or fun while doing dev stuff
 '''
 
 [[dependencies.sekcdevtools]]
-modId="forge"
-mandatory=true
-versionRange="[37,)"
-ordering="NONE"
-side="BOTH"
+    modId="forge"
+    mandatory=true
+    versionRange="[41,)"
+    ordering="NONE"
+    side="BOTH"
 
 # https://maven.apache.org/enforcer/enforcer-rules/versionRanges.html
 [[dependencies.sekcdevtools]]
-modId="minecraft"
-mandatory=true
-versionRange="[1.17.1,)"
-ordering="NONE"
-side="BOTH"
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19]"
+    ordering="NONE"
+    side="BOTH"
