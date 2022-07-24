@@ -1,0 +1,49 @@
+on:
+  push:
+    branches:
+      - master
+name: release-please
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    # https://github.com/google-github-actions/release-please-action in case more config is needed
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          command: manifest
+          token: ${{ secrets.PAT }}
+          # See how to configure file https://github.com/googleapis/release-please/blob/main/docs/manifest-releaser.md
+      # See output info at https://github.com/google-github-actions/release-please-action#configuration for variables
+      - uses: actions/checkout@v2
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        if: ${{ steps.release.outputs.release_created }}
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+      - name: Set up JDK 17
+        if: ${{ steps.release.outputs.release_created }}
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: 17
+      - name: Build and publish (release)
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          IS_RELEASE: ${{ steps.release.outputs.release_created }}
+        run: |
+          # Build
+          ./gradlew build
+      - name: Upload Release Asset(s)
+        if: ${{ steps.release.outputs.release_created }}
+        id: upload-release-asset
+        uses: sekwah41/upload-release-assets@v1.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.release-please.outputs.upload_url }}
+          asset_path: |
+            build/libs/*.jar
