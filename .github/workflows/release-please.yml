@@ -29,7 +29,7 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 17
-      - name: Build and publish (release)
+      - name: Build
         if: ${{ steps.release.outputs.release_created }}
         env:
           IS_RELEASE: ${{ steps.release.outputs.release_created }}
@@ -43,6 +43,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ needs.release.outputs.upload_url }}
+          upload_url: ${{ steps.release.outputs.upload_url }}
           asset_path: |
             build/libs/*.jar
