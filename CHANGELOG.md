@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/sekwah41/SekCDevTools/compare/v0.2.1...v0.2.2) (2022-07-24)
+
+
+### Bug Fixes 🐛
+
+* release upload url ([d6cbb15](https://github.com/sekwah41/SekCDevTools/commit/d6cbb15f86cae947f8c1e63995d8f7cb5e400b70))
+
 ## [0.2.1](https://github.com/sekwah41/SekCDevTools/compare/v0.2.0...v0.2.1) (2022-07-24)
 
 
