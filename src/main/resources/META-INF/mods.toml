@@ -14,7 +14,7 @@ Just a couple of edits to make my life a bit easier or fun while doing dev stuff
 [[dependencies.sekcdevtools]]
     modId="forge"
     mandatory=true
-    versionRange="[41,)"
+    versionRange="[41.0.94,)"
     ordering="NONE"
     side="BOTH"
 

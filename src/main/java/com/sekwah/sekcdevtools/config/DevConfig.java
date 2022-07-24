@@ -15,7 +15,9 @@ public class DevConfig {
     public static final ForgeConfigSpec MOD_CONFIG;
 
     private static final ForgeConfigSpec.ConfigValue<String> CONFIG_LOAD_WORLD;
+    private static final ForgeConfigSpec.ConfigValue<Boolean> CONFIG_RELOAD_ON_RESOURCE_CHANGE;
     public static String loadWorld;
+    public static boolean reloadOnResourceChange;
 
     static {
         ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
@@ -25,6 +27,9 @@ public class DevConfig {
         CONFIG_LOAD_WORLD = configBuilder.comment("World to load on first start")
                 .define("worldFirstLoad", "");
 
+        CONFIG_RELOAD_ON_RESOURCE_CHANGE = configBuilder.comment("Reload resources when there are changes to the resoucepack folder")
+                .define("resourcePacksReload", false);
+
         configBuilder.pop();
 
         MOD_CONFIG = configBuilder.build();
@@ -32,6 +37,7 @@ public class DevConfig {
 
     public static void loadVariables() {
         loadWorld = CONFIG_LOAD_WORLD.get();
+        reloadOnResourceChange = CONFIG_RELOAD_ON_RESOURCE_CHANGE.get();
     }
 
     @SubscribeEvent
