@@ -8,8 +8,12 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.nio.file.FileVisitOption.FOLLOW_LINKS;
+import static java.nio.file.StandardWatchEventKinds.*;
 
 public class ChangeWatcher {
 
@@ -31,14 +35,14 @@ public class ChangeWatcher {
      * @param watchFolder
      */
     private void watchFolder(final Path watchFolder) throws IOException {
-        Files.walkFileTree(watchFolder, new SimpleFileVisitor<Path>() {
+        Files.walkFileTree(watchFolder, EnumSet.of(FOLLOW_LINKS), Integer.MAX_VALUE, new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
                     throws IOException {
                 var key = dir.register(watcher,
-                        StandardWatchEventKinds.ENTRY_CREATE,
-                        StandardWatchEventKinds.ENTRY_DELETE,
-                        StandardWatchEventKinds.ENTRY_MODIFY);
+                        ENTRY_CREATE,
+                        ENTRY_DELETE,
+                        ENTRY_MODIFY);
                 var registered = keys.get(key);
                 if(registered == null) {
                     LOGGER.info("Watching: {}", dir);
@@ -82,9 +86,9 @@ public class ChangeWatcher {
 
                     LOGGER.info("Event {} on {}", kind.name(), child);
 
-                    if(kind == StandardWatchEventKinds.ENTRY_CREATE) {
+                    if(kind == ENTRY_CREATE) {
                         try  {
-                            if (Files.isDirectory(child, LinkOption.NOFOLLOW_LINKS)) {
+                            if (Files.isDirectory(child)) {
                                 watchFolder(child);
                             }
                         } catch (IOException e) {
