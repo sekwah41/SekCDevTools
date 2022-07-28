@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/sekwah41/SekCDevTools/compare/v0.2.2...v0.3.0) (2022-07-28)
+
+
+### Features ✨
+
+* follow symlinks ([bfe2f9f](https://github.com/sekwah41/SekCDevTools/commit/bfe2f9f672ea693cfa729ac42904578da8013f5d))
+
 ## [0.2.2](https://github.com/sekwah41/SekCDevTools/compare/v0.2.1...v0.2.2) (2022-07-24)
 
 
