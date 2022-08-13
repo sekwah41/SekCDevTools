@@ -195,6 +195,8 @@ jar {
                 //"MixinConfigs": "mixins.${project.modid}.json"
         ])
     }
+
+    baseName "${archivesBaseName}${project.mc_version}"
 }
 
 // Example configuration to allow publishing using the maven-publish task
