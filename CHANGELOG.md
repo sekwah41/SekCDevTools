@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/sekwah41/SekCDevTools/compare/v0.3.0...v0.3.1) (2022-08-13)
+
+
+### Bug Fixes 🐛
+
+* update versions to allow higher 1.19 ([812a750](https://github.com/sekwah41/SekCDevTools/commit/812a7502c540c44942c21a038a80820d85f7e6e7))
+
 ## [0.3.0](https://github.com/sekwah41/SekCDevTools/compare/v0.2.2...v0.3.0) (2022-07-28)
 
 
