@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/sekwah41/SekCDevTools/compare/v0.3.1...v0.3.2) (2022-11-04)
+
+
+### Bug Fixes 🐛
+
+* missing argument from build ([851bf64](https://github.com/sekwah41/SekCDevTools/commit/851bf641b1d284000c326e3ed9d2d3793ea805f6))
+
 ## [0.3.1](https://github.com/sekwah41/SekCDevTools/compare/v0.3.0...v0.3.1) (2022-08-13)
 
 
