@@ -40,7 +40,7 @@ public class DevToolClientEvents {
     public static void clientSetup(final FMLClientSetupEvent event) {
 
         try {
-            changeWatcher = new ChangeWatcher(Minecraft.getInstance().getResourcePackDirectory());
+            changeWatcher = new ChangeWatcher(Minecraft.getInstance().getResourcePackDirectory().toFile());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
