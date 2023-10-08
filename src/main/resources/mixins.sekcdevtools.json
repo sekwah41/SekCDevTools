@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "package": "com.sekwah.sekcdevtools.mixin",
+  "refmap": "mixins.sekcdevtools.refmap.json",
+  "mixins": [
+    "common.FolderRepositorySourceAccessor",
+    "common.PackRepositoryAccessor"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

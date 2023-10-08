@@ -21,9 +21,11 @@ public class ChangeWatcher {
     private final WatchService watcher;
     private final Map<WatchKey, Path> keys;
     public static final Logger LOGGER = LogManager.getLogger("SekC Dev Tools: Change Watcher");
+    private final Runnable runnable;
 
-    public ChangeWatcher(File resourceFolder) throws IOException {
+    public ChangeWatcher(File resourceFolder, Runnable runnable) throws IOException {
         this.watcher = FileSystems.getDefault().newWatchService();
+        this.runnable = runnable;
         var watchPath = resourceFolder.toPath();
         this.keys = new HashMap<>();
         watchFolder(watchPath);
@@ -55,6 +57,15 @@ public class ChangeWatcher {
                 return FileVisitResult.CONTINUE;
             }
         });
+    }
+
+    // Disable Watcher
+    public void close() throws IOException {
+        try {
+            watcher.close();
+        } catch (IOException e) {
+            LOGGER.error("Problem closing watcher", e);
+        }
     }
 
 
@@ -95,9 +106,12 @@ public class ChangeWatcher {
                             LOGGER.error("Problem watching new folder {}", dir);
                         }
                     } else if(kind == StandardWatchEventKinds.ENTRY_MODIFY) {
-                        if(ticksSinceLastReload > 20) {
+                        System.out.println("Ticks since last reload: " + ticksSinceLastReload);
+                        if(ticksSinceLastReload > 20 * 3) {
                             ticksSinceLastReload = 0;
-                            Minecraft.getInstance().reloadResourcePacks();
+                            this.runnable.run();
+                        } else {
+                            LOGGER.info("Update skipped due to being too soon");
                         }
                         LOGGER.info("File changed!!!! {}", dir);
                     }

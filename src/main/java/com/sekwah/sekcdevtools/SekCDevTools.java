@@ -1,13 +1,12 @@
 package com.sekwah.sekcdevtools;
 
 import com.sekwah.sekcdevtools.client.DevToolClientEvents;
+import com.sekwah.sekcdevtools.common.DevToolCommonEvents;
 import com.sekwah.sekcdevtools.config.DevConfig;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

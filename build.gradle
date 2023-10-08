@@ -174,9 +174,12 @@ def versionString = (file('./version.txt').text).replaceAll('\n', '').replaceAll
 setVersion(versionString)
 println "Version: ${getVersion()}"
 
-/*mixin {
+mixin {
     add sourceSets.main, "mixins.${project.modid}.refmap.json"
-}*/
+
+    debug.verbose = true
+    debug.export = true
+}
 
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
@@ -191,7 +194,7 @@ jar {
                 "Implementation-Version": "${versionString}",
                 "Implementation-Vendor" :project.vendor,
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                //"MixinConfigs": "mixins.${project.modid}.json"
+                "MixinConfigs": "mixins.${project.modid}.json"
         ])
     }
 
@@ -219,6 +222,19 @@ task deobfJar(type: Jar) {
     build.dependsOn it
     from sourceSets.main.output
     archiveClassifier = 'deobf'
+    // Not sure if there is a better way to reference this, though yep :) This is needed else the mixins dont work
+    manifest {
+        attributes([
+                "Specification-Title": project.modid,
+                "Specification-Vendor": project.vendor,
+                "Specification-Version": "1", // We are version 1 of ourselves
+                "Implementation-Title": project.name,
+                "Implementation-Version": "${versionString}",
+                "Implementation-Vendor" :project.vendor,
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "MixinConfigs": "mixins.${project.modid}.json"
+        ])
+    }
     from file("LICENSE")
 }
 

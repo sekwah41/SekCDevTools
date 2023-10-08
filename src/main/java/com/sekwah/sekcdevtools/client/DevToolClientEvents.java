@@ -38,16 +38,15 @@ public class DevToolClientEvents {
     }
 
     public static void clientSetup(final FMLClientSetupEvent event) {
-
         try {
-            changeWatcher = new ChangeWatcher(Minecraft.getInstance().getResourcePackDirectory().toFile());
+            changeWatcher = new ChangeWatcher(Minecraft.getInstance().getResourcePackDirectory().toFile(), () -> Minecraft.getInstance().reloadResourcePacks());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @SubscribeEvent
-    public static void clientTickEvent(TickEvent.ClientTickEvent event) {
+    public static void serverTickEvent(TickEvent.ClientTickEvent event) {
         if(DevConfig.reloadOnResourceChange) changeWatcher.processEvents();
     }
 }
