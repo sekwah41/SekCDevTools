@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/sekwah41/SekCDevTools/compare/v0.4.0...v0.5.0) (2023-10-08)
+
+
+### Features ✨
+
+* add datapack reloading ([cf224f3](https://github.com/sekwah41/SekCDevTools/commit/cf224f3ebe81407a12fef623fc03bde974ee53c7))
+
 ## [0.4.0](https://github.com/sekwah41/SekCDevTools/compare/v0.3.2...v0.4.0) (2023-06-21)
 
 
